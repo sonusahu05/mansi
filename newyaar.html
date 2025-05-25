@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mailbox Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 20px;
+    }
+    .game-container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .challenge {
+      margin-bottom: 20px;
+    }
+    #challenge2, #challenge3 {
+      display: none; /* Hide challenge 2 & 3 initially */
+    }
+    input[type="text"] {
+      padding: 8px;
+      font-size: 16px;
+      width: calc(100% - 100px);
+      margin-right: 10px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 8px 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #mailbox {
+      text-align: center;
+      margin-top: 30px;
+    }
+    #mailbox img {
+      max-width: 150px;
+    }
+    #letter-box {
+      background: #e0f7fa;
+      border-radius: 5px;
+      padding: 15px;
+      margin-top: 20px;
+      display: none;
+      white-space: pre-wrap; /* preserve line breaks */
+      max-height: 400px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <h1>Welcome to Your Surprise!</h1>
+    <p>Complete these coding challenges to unlock the letter!</p>
+
+    <!-- Challenge 1 -->
+    <div class="challenge" id="challenge1div">
+      <h2>Challenge 1: One famous quote by Mansi?</h2>
+      <input type="text" id="challenge1" placeholder="Enter your answer" />
+      <button onclick="checkAnswer1()">Submit</button>
+    </div>
+
+    <!-- Challenge 2 -->
+    <div class="challenge" id="challenge2">
+      <h2>Aapne group ka spot?</h2>
+      <input type="text" id="challenge2input" placeholder="Enter your answer" />
+      <button onclick="checkAnswer2()">Submit</button>
+    </div>
+
+    <!-- Challenge 3 -->
+    <div class="challenge" id="challenge3">
+      <h2>Date of our pact?(DD/MM/YYYY)</h2>
+      <input type="text" id="challenge3input" placeholder="Enter your answer" />
+      <button onclick="checkAnswer3()">Submit</button>
+    </div>
+
+    <!-- Mailbox -->
+    <div id="mailbox">
+      <img src="mailbox.png" alt="Mailbox" />
+      <p id="mail-status">Mail is on its way...</p>
+    </div>
+
+    <!-- Letter -->
+    <div id="letter-box">
+      <p id="letter-content"></p>
+    </div>
+  </div>
+
+  <script>
+    const letterText = `HAPPYYY BIRTHDAYYY!!🥳🥳🖤🖤  
+Iss saal let’s take a stroll through all the years we’ve been friends. Starting with let’s rewind to the first time we met, well it was in 4th standard but it didn’t have an impact as much as it did in 7th grade, when I, a very serious, peace-loving class monitor (basically a saint), was tragically placed in the same classroom as you, the literal embodiment of disruption. You were chaos bhai literal CHAOS and a full-course meal of “let’s see how much I can annoy her today.” You had this unmatchable talent of finding new and innovative ways to crawl under my skin like it was your full-time job. And oh, you were excellent at it. You were also the first person I ever cussed. Like, properly. A certified milestone. Same year you stealing the show as the “thief” in the social awareness skit bhai seriously, if chori-chakari was a career, you’d have nailed it by now.
+
+Bhai and you teased me with every boy’s name like it was your part-time job, and honestly, if matchmaking ever becomes legal torture, you’d be rich. I used to pray I’d never get stuck with you again. But nope, destiny had other plans. Same class in 8th grade. Cue the groans. Because apparently, I didn’t get enough of you the first time. That year, somehow, became one of the best of my school life. Who knew constant annoyance could grow into something… tolerable? The class screaming “Jai Mata Di” during career counseling, getting you scolded, classic. Honestly, looking back, those were some of the best school days I had. And that’s when our group really started to gel.
+
+9th grade tried to pull us apart and I thought, “Finally, sweet relief. Different classes. New lives.” But no. You showed up in recess like a bad sequel no one asked for. You were like a stubborn shadow, You were always at the center of every notorious plan, every ridiculous rumor. Then 10th grade still the same story. Recess meet-ups, Bakchodi sessions, and that incident when people thought you had a crush on me just because you showed up with a Cadbury from Manish (knowing you, you don’t have a good choice anyways) so moving on.
+
+School wasn’t always sunshine and roses, but it was definitely better because you were around. Later, farewell plans got cancelled (again, shocker), that time I understand Kunal BKL ki galti thi but I was like, “Bhai, kya karein, inse kuch nahi hone wala.” But then finally, during the last board exam, we got a plan that actually happened, watching Sonu Ke Titu Ki Sweety. That day gave me a little hope that maybe, just maybe, we’ll keep making memories even when the world insists on canceling plans. But again life happened, we used to meet on bdays and once-in-a-year plans which used to get cancelled 1963622077 times.
+
+We had absurd national park trips, I have no fucking clue how was that even considered a plan!? Every national park trip has tested my ability to act like a normal human while trying not to loose my mind. Between all these plans of dropping chillars in Kaffeine’s cafe, going to places very unplanned, meeting at station for no good reason. All along this, I always thought ki we weren’t this close as we looked on the out. Since, we’re one of the school groups that survived even after school. I always felt distant and out of place. I always thought ki I’ll just be a tag along and never very close to you in general other than the group. For the longest time I thought of making peace with it. But I always had a hope.
+
+But oh dear this time when I was in India, something in me healed so beautifully, I swear I won’t have asked for a better way for things to fall in place. Maybe I manifested it all along or maybe your life choices just got better. Whatever it is, I’ll always be grateful. I love when life happens in this way. I wouldn’t have asked it in a better way for you, for me or for us to end up like this. I mean of course this isn’t the end but anyways.
+
+Honestly, you’ve been the best (thodi si ulti aagayi ye likhte likhte pr koi na)You have qualities most people spend years trying to inculcate in themselves, honesty, goal-driven, passionate, kindness, ambitious, and, let’s be honest, stubborn enough to get what you want. You’re the kind of friend who’s upfront when it matters, who shows up even when life gets messy, and who genuinely cares without expecting anything in return.
+
+Idk if I have said it enough times but I appreciate you so much and I want you to know this, you’ve been nothing short of amazing. You’ve been a good friend all along bhai, even the best. And there’s never been a moment where I questioned it and that’s been no moment where I’ve been proved wrong. You’ve been one hell of an incredible person in and out. Remember when you told me you were moving out? I was beyond proud. Not just because you were leaving the comfort zone, but because you were choosing to grow, to challenge yourself. And you? You’re riding it like a pro, even when it’s terrifying. This is the sole reason why I believe in you so much because I know no matter what you’ll ace everything that you’ll ever do.
+
+Moving next, I hope from this bday you prioritise yourself more, have consideration for yourself in the way that you always have for others, show up for yourself more times than you do for others, stop being so hard on yourself and let kindness seep in too. I know you have self doubts and I know you’re working on it, I know one thing for sure that you’ll be the person you’ve always dreamed to be. And I hope you find courage to dream for new things when you accomplish one or even when life has different plans, I hope you to be easy on yourself. I hope this year brings you peace and good adventures and lot more fun. No matter what you do I’ll always be proud of you. Here’s to more laughter, more failed plans, more ridiculous trips, and a friendship that only gets stronger with time. Happy bday! Thank you for being the best kind of troublemaker and the most loyal friend I could ever ask for. And sorryy thoda gift delay hogaya.
+`;
+
+    function checkAnswer1() {
+      var answer1 = document.getElementById('challenge1').value.trim().toLowerCase();
+      var correctAnswer1 = "if you think of quitting think why did you start it first";
+      if (answer1 === correctAnswer1) {
+        document.getElementById('challenge1').style.backgroundColor = "#c8e6c9";
+        document.getElementById('challenge2').style.display = "block";
+      } else {
+        alert("Oops! Try again.");
+      }
+    }
+
+    function checkAnswer2() {
+      var answer2 = document.getElementById('challenge2input').value.trim().toLowerCase();
+      var correctAnswer2 = "borivali station";
+      if (answer2 === correctAnswer2) {
+        document.getElementById('challenge2input').style.backgroundColor = "#c8e6c9";
+        document.getElementById('challenge3').style.display = "block";
+      } else {
+        alert("Oops! Try again.");
+      }
+    }
+
+    function checkAnswer3() {
+      var answer3 = document.getElementById('challenge3input').value.trim();
+      var correctAnswer3 = "17/08/2024";
+      if (answer3 === correctAnswer3) {
+        document.getElementById('challenge3input').style.backgroundColor = "#c8e6c9";
+        dropMail();
+      } else {
+        alert("Oops! Try again.");
+      }
+    }
+
+    function dropMail() {
+      setTimeout(function () {
+        document.getElementById('mail-status').innerText = "The letter has been delivered!";
+        document.getElementById('mailbox').innerHTML =
+          '<img src="mailbox_open.png" alt="Open Mailbox" />';
+        document.getElementById('letter-box').style.display = "block";
+        document.getElementById('letter-content').innerText = letterText;
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
